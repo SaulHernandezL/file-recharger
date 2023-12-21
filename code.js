@@ -35,7 +35,7 @@ let hiper = true; //* Opción de hipervínculo
 let conect = true; //* Opción de conector
 const referencers = [
     "c7bce078c52e884ca4f3d3aa38b8d669987529d8",
-    "82d915d54aab466e830306ea16bda503cdc87bfc",
+    "82d915d54aab466e830306ea16bda503cdc87bfc", //* Componente de hipervínculo B
 ]; //* Array de los id de los componentes de hipervínculos
 //main Recibimos el mensaje de la UI
 figma.ui.onmessage = (msg) => __awaiter(void 0, void 0, void 0, function* () {
@@ -110,6 +110,10 @@ figma.on("selectionchange", () => __awaiter(void 0, void 0, void 0, function* ()
                 //param index: indice del array de referencers
                 yield importNode(0);
                 yield importNode(1);
+            }
+            else {
+                const delay = ms => new Promise(res => setTimeout(res, ms));
+                yield delay(100);
             }
             //* Comprobamos si la opción de conector está activada
             if (conect) {
@@ -306,7 +310,7 @@ figma.on("selectionchange", () => __awaiter(void 0, void 0, void 0, function* ()
             let frameName; //* Nombre del frame
             let link; //* Hipervínculo
             index == 0 ? (link = selArray[1].id) : (link = selArray[0].id); //* Obtenemos el id del frame que no es el frame actual
-            instance.children[0].hyperlink = { type: "NODE", value: link }; //* Seteamos el hipervínculo
+            instance.children[0].children[0].children[0].hyperlink = { type: "NODE", value: link }; //* Seteamos el hipervínculo
             //* Seteamos la posición del hiperlink
             if (index == 0) { //* Si el frame actual es el frame uno
                 instance.x = selArray[index].x + selArray[index].width - 400;
