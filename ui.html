@@ -1,0 +1,403 @@
+<head>
+	<!--Import Api de fuentes de Google-->
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<!--Import Api de fuentes de Google-->
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<!--Import Api de fuentes de Google-->
+	<link
+		href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
+		rel="stylesheet"
+	/>
+</head>
+<!--*Escribimos los estilos dentro del HTML para ser consumidos por el API de Figma-->
+<style>
+	html {
+		padding: 0px;
+		margin: 0px;
+	}
+	body {
+		background-color: white;
+		padding: 0px;
+		margin: 0px;
+	}
+	h2,
+	h3 {
+		color: #333333;
+		font-family: "Roboto", sans-serif;
+		font-weight: 500;
+		margin: 0px;
+		padding: 0px;
+	}
+	p,
+	li {
+		color: #333333;
+		font-family: "Roboto", sans-serif;
+		font-weight: 300;
+	}
+	.header {
+		padding: 20px;
+		background-color: #e10098;
+		justify-content: space-between;
+		display: flex;
+	}
+	.btn-primary {
+		background-color: #e10098;
+		color: white;
+		border: none;
+		padding: 10px 60px;
+		border-radius: 5px;
+		font-family: "Roboto", sans-serif;
+		font-weight: 500;
+		cursor: pointer;
+		font-size: 16px;
+	}
+	.btn-primary:hover {
+		background-color: #a0006c;
+	}
+	.btn-line {
+		display: flex;
+		justify-content: flex-end;
+	}
+
+	.cont-check {
+		display: flex;
+		flex-direction: row;
+		gap: 5px;
+		font-size: 15px;
+	}
+
+	label {
+		color: #333333;
+		font-family: "Roboto", sans-serif;
+		font-weight: 500;
+		cursor: pointer;
+		display: flex;
+		align-items: center;
+		gap: 20px;
+	}
+
+	.radio-opt:checked + label {
+		color: #e10098;
+		gap: 20px;
+		font-weight: 600;
+		cursor: pointer;
+	}
+
+	input[type="checkbox"] {
+		cursor: pointer;
+		background-color: #fff;
+		background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z'/%3e%3c/svg%3e");
+		width: 15px;
+		height: 15px;
+		appearance: none;
+		border: 0.15em solid #767676;
+		border-radius: 0.15rem;
+	}
+
+	input[type="checkbox"]:checked {
+		background-color: #e10098;
+		border-color: #e10098;
+	}
+
+	input[type="text"] {
+		padding: 9.5px 12px;
+		border-radius: 4px;
+		border-style: solid;
+		border-width: 2px;
+		border-color: #d8d8d8;
+	}
+
+	input[type="text"]:focus {
+		outline: red;
+		border-color: #e10098;
+		border: 2px solid #e10098;
+	}
+
+	input[type="radio"] {
+		/* Add if not using autoprefixer */
+		-webkit-appearance: none;
+		/* Remove most all native input styles */
+		appearance: none;
+		/* Not removed via appearance */
+		margin: 0;
+
+		font: inherit;
+		color: #e10098;
+		width: 1.15em;
+		height: 1.15em;
+		border: 0.15em solid #767676;
+		border-radius: 50%;
+		transform: translateY(-0.075em);
+
+		display: grid;
+		place-content: center;
+	}
+
+	input[type="radio"]::before {
+		content: "";
+		width: 0.65em;
+		height: 0.65em;
+		border-radius: 50%;
+		transform: scale(0);
+		transition: 120ms transform ease-in-out;
+		/* Windows High Contrast Mode */
+		background-color: #e10098;
+	}
+
+	input[type="radio"]:disabled::before {
+		content: "";
+		width: 0.65em;
+		height: 0.65em;
+		border-radius: 50%;
+		transform: scale(0);
+		transition: 120ms transform ease-in-out;
+		/* Windows High Contrast Mode */
+		background-color: blue;
+		color: blue;
+	}
+
+	input[type="radio"]:checked::before {
+		transform: scale(1);
+	}
+
+	input[type="color"] {
+		appearance: none;
+		-moz-appearance: none;
+		-webkit-appearance: none;
+		background: none;
+		border:0;
+    outline: none;
+		cursor: pointer;
+		height: 2em;
+		padding: 0;
+		width: 1.6em;
+	}
+
+	.radio-input {
+		display: flex;
+		align-items: normal;
+		gap: 10px;
+	}
+	.all-radios {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+	}
+	.explication {
+		font-size: 12px;
+		color: #767676;
+		padding-left: 30px;
+		font-family: "Roboto", sans-serif;
+	}
+
+	.fondo-carga {
+		opacity: 0.75;
+		width: 500px;
+		height: 550px;
+		background-color: #ffffff;
+		position: absolute;
+		z-index: 50;
+		top: 0px;
+		left: 0px;
+		backdrop-filter: blur(50px);
+	}
+
+	#load-img,
+	#load-back {
+		display: none;
+	}
+
+	iframe {
+		position: absolute;
+		z-index: 100;
+		width: calc(100% - 40px);
+		top: calc(50% - 75px);
+		border: none;
+	}
+
+	.note {
+		font-size: 12px;
+	}
+</style>
+<body>
+	<!--*Header del plugIn-->
+	<div class="header">
+		<!--Import Logo de Liverpool-->
+		<svg
+			width="90"
+			height="20"
+			viewBox="0 0 90 20"
+			fill="none"
+			xmlns="http://www.w3.org/2000/svg"
+		>
+			<path
+				d="M10.6235 10.757H6.31519C5.83538 10.757 5.68166 10.4669 5.68166 10.0718C5.68166 9.75144 5.68023 0.00140381 5.68023 0.00140381H4.16608V11.4452C4.16608 11.9264 4.58699 12.2425 4.89873 12.2425H10.6235V10.757Z"
+				fill="white"
+			/>
+			<path
+				d="M10.6249 12.8099V14.2996H2.97517C2.45226 14.2996 2.08881 13.9146 2.08881 13.4161C2.09455 12.83 2.08881 0.00140381 2.08881 0.00140381H3.59721V11.8848C3.59721 12.4062 3.82706 12.8099 4.47352 12.8099H10.6249Z"
+				fill="white"
+			/>
+			<path
+				d="M0 0H1.51559V13.8328C1.51559 14.3342 1.76986 14.8642 2.51257 14.8642H10.6249V16.3497H1.80003C0.794426 16.3497 0 15.5279 0 14.5482V0Z"
+				fill="white"
+			/>
+			<path
+				d="M6.24768 0H7.76327V8.1224C7.76327 8.41833 7.89974 8.6999 8.33072 8.6999H10.6249V10.1896H7.01912C6.4646 10.1896 6.24912 9.84342 6.24912 9.44692V0H6.24768Z"
+				fill="white"
+			/>
+			<path
+				d="M8.33786 5.5926H12.6462C13.126 5.5926 13.2797 5.88279 13.2797 6.27928C13.2797 6.5982 13.2826 16.3497 13.2826 16.3497H14.7967V4.90448C14.7967 4.42466 14.3758 4.10718 14.0641 4.10718H8.33643V5.5926H8.33786Z"
+				fill="white"
+			/>
+			<path
+				d="M8.33643 3.53974V2.05145H15.9848C16.5077 2.05145 16.8711 2.43645 16.8711 2.93495C16.8654 3.51963 16.8711 16.3497 16.8711 16.3497H15.3627V4.46634C15.3627 3.94486 15.1314 3.54118 14.4864 3.54118H8.33643V3.53974Z"
+				fill="white"
+			/>
+			<path
+				d="M18.9613 16.3497H17.4458V2.51688C17.4458 2.01552 17.1915 1.48686 16.4488 1.48686H8.33643V0H17.1599C18.1669 0 18.9613 0.821721 18.9613 1.8029V16.3497Z"
+				fill="white"
+			/>
+			<path
+				d="M12.7137 16.3497H11.1981V8.22727C11.1981 7.93134 11.0616 7.64833 10.6307 7.64833H8.33789V6.15717H11.9437C12.4982 6.15717 12.7137 6.50482 12.7137 6.90131V16.3497Z"
+				fill="white"
+			/>
+			<path
+				d="M53.748 9.28025C53.748 8.77027 54.1402 8.36085 54.6545 8.36085H56.0106V6.85675H54.4031C53.1835 6.85675 52.2181 7.83219 52.2181 9.03316V16.3496H53.7495L53.7466 9.28169L53.748 9.28025Z"
+				fill="white"
+			/>
+			<path
+				d="M31.4768 6.82947H29.9454V16.3482H31.4768V6.82947Z"
+				fill="white"
+			/>
+			<path
+				d="M55.7995 19.9986H57.3438V15.005C58.2632 15.8885 59.5202 16.4344 60.908 16.4344C62.7439 16.4344 64.3557 15.4777 65.255 14.044C66.1543 15.4777 67.7647 16.4344 69.6021 16.4344C71.4395 16.4344 73.0513 15.4777 73.9492 14.044C74.8499 15.4777 76.4603 16.4344 78.2977 16.4344C81.1192 16.4344 83.4047 14.1819 83.4047 11.4035C83.4047 8.6252 81.1192 6.37122 78.2977 6.37122C76.4603 6.37122 74.8499 7.32798 73.9492 8.76311C73.0513 7.32798 71.4395 6.37122 69.6021 6.37122C67.7647 6.37122 66.1543 7.32798 65.255 8.76311C64.3543 7.32798 62.7439 6.37122 60.908 6.37122C58.088 6.37122 55.7995 8.62377 55.7995 11.4035V20V19.9986ZM78.2963 7.87531C80.2701 7.87531 81.8748 9.45842 81.8748 11.4021C81.8748 13.3458 80.2701 14.9289 78.2963 14.9289C76.3224 14.9289 74.7163 13.3458 74.7163 11.4021C74.7163 9.45842 76.3224 7.87531 78.2963 7.87531ZM69.6007 7.87531C71.576 7.87531 73.1806 9.45842 73.1806 11.4021C73.1806 13.3458 71.5745 14.9289 69.6007 14.9289C67.6268 14.9289 66.0207 13.3458 66.0207 11.4021C66.0207 9.45842 67.6268 7.87531 69.6007 7.87531ZM60.9065 7.87531C62.8804 7.87531 64.4865 9.45842 64.4865 11.4021C64.4865 13.3458 62.8804 14.9289 60.9065 14.9289C58.9327 14.9289 57.328 13.3458 57.328 11.4021C57.328 9.45842 58.9312 7.87531 60.9065 7.87531Z"
+				fill="white"
+			/>
+			<path
+				d="M46.3569 16.3812C48.7057 16.3812 50.714 14.8225 51.2642 12.5815H49.7845C49.2745 14.0181 47.9026 14.982 46.3569 14.982C44.4792 14.982 42.9163 13.5871 42.7338 11.6937H51.4107V11.4006C51.4107 8.65532 49.1424 6.42145 46.3583 6.42145C43.5742 6.42145 41.303 8.65532 41.303 11.4006C41.303 14.1459 43.5713 16.3798 46.3583 16.3798M46.3583 7.82067C47.8997 7.82067 49.3004 8.78605 49.8118 10.293H42.9019C43.4119 8.78605 44.8168 7.82067 46.3583 7.82067Z"
+				fill="white"
+			/>
+			<path
+				d="M37.9285 16.3482L41.7627 6.82947H40.0158L36.9315 14.4907L33.8457 6.82947H32.1003L35.9331 16.3482H37.9285Z"
+				fill="white"
+			/>
+			<path
+				d="M85.6918 3.56702H84.1604V16.3482H85.6918V3.56702Z"
+				fill="white"
+			/>
+			<path
+				d="M24.6818 3.56702V13.9535C24.6861 14.4706 24.9878 14.8743 25.5883 14.8743H29.3507V16.3482H24.1661C23.5124 16.3482 23.1332 15.9546 23.1332 15.3843V3.56702H24.6818Z"
+				fill="white"
+			/>
+			<path d="M31.4768 3.56702H29.944V5.09266H31.4768V3.56702Z" fill="white" />
+			<path
+				d="M88.4643 5.54809C87.907 5.54809 87.4587 5.10275 87.4587 4.55398C87.4587 4.00521 87.907 3.56274 88.4643 3.56274C89.0217 3.56274 89.4728 4.00377 89.4728 4.55398C89.4728 5.10419 89.0217 5.54809 88.4643 5.54809ZM88.4643 3.72651C88.0003 3.72651 87.6254 4.09571 87.6254 4.55398C87.6254 5.01225 88.0003 5.38289 88.4643 5.38289C88.9284 5.38289 89.3076 5.01081 89.3076 4.55398C89.3076 4.09715 88.9298 3.72651 88.4643 3.72651ZM88.0233 4.03681H88.5017C88.7703 4.03681 88.8594 4.20058 88.8594 4.31551C88.8594 4.48934 88.7344 4.61288 88.552 4.62294V4.63012C88.6468 4.66172 88.7129 4.75223 88.8034 4.89589L88.9355 5.10419H88.7229L88.6267 4.93755C88.4888 4.69908 88.437 4.65023 88.3034 4.65023H88.1986V5.10419H88.0233V4.03825V4.03681ZM88.4514 4.50226C88.585 4.50226 88.6755 4.45198 88.6755 4.34137C88.6755 4.24368 88.5951 4.18191 88.4816 4.18191H88.2V4.5037H88.4514V4.50226Z"
+				fill="white"
+			/>
+		</svg>
+		<!--Import Logo de Figma-->
+		<svg
+			width="20"
+			height="22"
+			viewBox="0 0 20 22"
+			fill="none"
+			xmlns="http://www.w3.org/2000/svg"
+		>
+			<path
+				d="M10.4658 13.9875V13.8625H10.3408H6.83459C5.87153 13.8625 4.94792 14.2451 4.26693 14.9261C3.58594 15.6071 3.20337 16.5307 3.20337 17.4938C3.20337 18.4568 3.58594 19.3804 4.26693 20.0614C4.94792 20.7424 5.87153 21.125 6.83459 21.125C7.79765 21.125 8.72127 20.7424 9.40226 20.0614C10.0832 19.3804 10.4658 18.4568 10.4658 17.4938V13.9875ZM4.81046 15.4696C5.3473 14.9328 6.0754 14.6312 6.83459 14.6312H9.69715V17.4938C9.69715 18.253 9.39556 18.9811 8.85872 19.5179C8.32189 20.0547 7.59379 20.3563 6.83459 20.3563C6.0754 20.3563 5.3473 20.0547 4.81046 19.5179C4.27363 18.9811 3.97204 18.253 3.97204 17.4938C3.97204 16.7346 4.27363 16.0065 4.81046 15.4696Z"
+				fill="white"
+				stroke="white"
+				stroke-width="0.25"
+			/>
+			<path
+				d="M10.4658 7.49377V7.36877H10.3408H6.83459C5.87153 7.36877 4.94792 7.75135 4.26693 8.43234C3.58594 9.11332 3.20337 10.0369 3.20337 11C3.20337 11.9631 3.58594 12.8867 4.26693 13.5677C4.94792 14.2486 5.87153 14.6312 6.83459 14.6312H10.3408H10.4658V14.5062V7.49377ZM4.81046 8.97587C5.3473 8.43904 6.0754 8.13745 6.83459 8.13745H9.69715V13.8626H6.83459C6.0754 13.8626 5.3473 13.561 4.81046 13.0241C4.27363 12.4873 3.97204 11.7592 3.97204 11C3.97204 10.2408 4.27363 9.5127 4.81046 8.97587Z"
+				fill="white"
+				stroke="white"
+				stroke-width="0.25"
+			/>
+			<path
+				d="M6.83185 0.875L6.83176 0.875C5.86919 0.875752 4.9463 1.25866 4.26593 1.93956C3.58555 2.62047 3.20337 3.54366 3.20337 4.50622C3.20337 5.46929 3.58594 6.3929 4.26693 7.07389C4.94792 7.75487 5.87153 8.13745 6.83459 8.13745H10.3383H10.4633V8.01245V1V0.875H10.3383L6.83185 0.875ZM6.83225 1.64367H9.69461V7.36878H6.83459C6.0754 7.36878 5.3473 7.06719 4.81046 6.53035C4.27363 5.99352 3.97204 5.26542 3.97204 4.50622C3.97204 3.74742 4.27332 3.01965 4.80967 2.48288C5.346 1.94614 6.07348 1.64429 6.83225 1.64367Z"
+				fill="white"
+				stroke="white"
+				stroke-width="0.25"
+			/>
+			<path
+				d="M9.82214 0.875H9.69714V1V8.01245V8.13745H9.82214H13.3284C14.2914 8.13745 15.215 7.75487 15.896 7.07389C16.577 6.3929 16.9596 5.46929 16.9596 4.50622C16.9596 3.54316 16.577 2.61955 15.896 1.93856C15.215 1.25757 14.2914 0.875 13.3284 0.875H9.82214ZM10.4658 7.36878V1.64367H13.3284C14.0876 1.64367 14.8157 1.94526 15.3525 2.48209C15.8893 3.01893 16.1909 3.74703 16.1909 4.50622C16.1909 5.26542 15.8893 5.99352 15.3525 6.53035C14.8157 7.06719 14.0876 7.36878 13.3284 7.36878H10.4658Z"
+				fill="white"
+				stroke="white"
+				stroke-width="0.25"
+			/>
+			<path
+				d="M11.3042 8.97587C11.8411 8.43904 12.5692 8.13745 13.3284 8.13745C14.0876 8.13745 14.8157 8.43904 15.3525 8.97587C15.8893 9.5127 16.1909 10.2408 16.1909 11C16.1909 11.7592 15.8893 12.4873 15.3525 13.0241C14.8157 13.561 14.0876 13.8626 13.3284 13.8626C12.5692 13.8626 11.8411 13.561 11.3042 13.0241C10.7674 12.4873 10.4658 11.7592 10.4658 11C10.4658 10.2408 10.7674 9.5127 11.3042 8.97587ZM13.3284 7.36877C12.3653 7.36877 11.4417 7.75135 10.7607 8.43234C10.0797 9.11332 9.69714 10.0369 9.69714 11C9.69714 11.9631 10.0797 12.8867 10.7607 13.5677C11.4417 14.2486 12.3653 14.6312 13.3284 14.6312C14.2914 14.6312 15.215 14.2486 15.896 13.5677C16.577 12.8867 16.9596 11.9631 16.9596 11C16.9596 10.0369 16.577 9.11332 15.896 8.43234C15.215 7.75135 14.2914 7.36877 13.3284 7.36877Z"
+				fill="white"
+				stroke="white"
+				stroke-width="0.25"
+			/>
+		</svg>
+	</div>
+	<div style="padding: 20px">
+		<!--*Titulo del plugIn-->
+		<h2>Frame referencer</h2>
+		<ol>
+			<li>Selecciona las opciones que más te interesen</li>
+			<br />
+			<div id="formOpciones">
+				<div class="cont-check">
+					<input type="color" id="opcion0" name="head" value="#E10098" />
+					<label for="head">Color de las referencias</label>
+				</div>
+				<div class="cont-check">
+					<input type="checkbox" id="opcion1" name="local" value="1" checked />
+					<label for="opcion1"
+						>Sobreescribir el contenido del frame 1 en el 2</label
+					>
+				</div>
+				<div class="cont-check">
+					<input type="checkbox" id="opcion2" name="local" value="2" checked />
+					<label for="opcion2">Generar hipervinculos</label>
+				</div>
+				<div class="cont-check">
+					<input type="checkbox" id="opcion3" name="local" value="3" checked />
+					<label for="opcion3">Crear conector de frame a frame</label>
+				</div>
+			</div>
+			<br />
+			<li>Selecciona dos frames para referenciarlos</li>
+		</ol>
+	</div>
+	<script>
+    //* Acciónes al cambiar el valor de los inputs
+		document.getElementById("formOpciones").onchange = () => {
+			let color = document.getElementById("opcion0").value; //*Obtenemos el valor del color elegido
+			let rgbColor = []; //* Creamos un array para guardar los valores RGB del color
+			rgbColor[0] = parseInt(color.substr(1, 2), 16); //* Convertimos el valor hexadecimal a decimal del rojo
+			rgbColor[1] = parseInt(color.substr(3, 2), 16); //* Convertimos el valor hexadecimal a decimal del verde
+			rgbColor[2] = parseInt(color.substr(5, 2), 16); //* Convertimos el valor hexadecimal a decimal del azul
+
+			let opcion1 = document.getElementById("opcion1").checked; //* Obtenemos el valor del checkbox 1
+			let opcion2 = document.getElementById("opcion2").checked; //* Obtenemos el valor del checkbox 2
+			let opcion3 = document.getElementById("opcion3").checked; //* Obtenemos el valor del checkbox 3
+
+      //* Evaluamos si almenos un checkbox esta seleccionado
+			if (opcion1 == false && opcion2 == false && opcion3 == false) {
+				alert("Selecciona al menos una opción"); //* Mostramos un mensaje de alerta al no seleccionar ninguna opción
+				document.getElementById("opcion1").checked = true; //* Seleccionamos el checkbox 1
+			} else {
+        //* Enviamos los valores al index.js
+				parent.postMessage(
+					{
+						pluginMessage: {
+							type: "opciones", //* Tipo de mensaje
+							opcion0: rgbColor, //* Color elegido
+							opcion1: opcion1, //* Opcion de sobreescribir
+							opcion2: opcion2, //* Opcion de hipervinculos
+							opcion3: opcion3, //* Opcion de conector
+						},
+					},
+					"*"
+				);
+			}
+		};
+	</script>
+</body>
