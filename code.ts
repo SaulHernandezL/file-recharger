@@ -1,7 +1,7 @@
 //Funcion Renderizamos ventana del plugin
 figma.showUI(__html__, {
 	width: 500, //* Ancho de la ventana
-	height: 350, //* Alto de la ventana
+	height: 600, //* Alto de la ventana
 });
 //* Mostrar la UI
 
@@ -19,27 +19,29 @@ let xC2: number, yC2: number; //* Coordenadas del centro del segundo doblez
 let sector: any = []; //* Array que guarda el sector en el que se encuentra el frame dos
 
 //main Variables de las opciones
+//* Color del conector y del hipervínculo
 let colorG: SolidPaint = {
 	type: "SOLID",
-	color: { r: 1, g: 0, b: 0.5 },
-}; //* Color del conector y del hipervínculo
+	color: { r: 0, g: 0, b: 0 },
+};
 let sobre: boolean = true; //* Opción de sobreescritura
 let hiper: boolean = true; //* Opción de hipervínculo
 let conect: boolean = true; //* Opción de conector
 
+//* Array de los id de los componentes de hipervínculos
 const referencers = [
 	"c7bce078c52e884ca4f3d3aa38b8d669987529d8", //* Componente de hipervínculo A
 	"82d915d54aab466e830306ea16bda503cdc87bfc", //* Componente de hipervínculo B
-]; //* Array de los id de los componentes de hipervínculos
+];
 
 //main Recibimos el mensaje de la UI
 figma.ui.onmessage = async (msg: any) => {
 	colorG = {
 		type: "SOLID",
 		color: {
-			r: msg.opcion0[0] / 255, //* Convertimos los valores de 0 a 255 a 0 a 1
-			g: msg.opcion0[1] / 255, //* Convertimos los valores de 0 a 255 a 0 a 1
-			b: msg.opcion0[2] / 255, //* Convertimos los valores de 0 a 255 a 0 a 1
+			r: msg.opcion0[0]/255, //* Convertimos los valores de 0 a 255 -> 0 a 1
+			g: msg.opcion0[1]/255, //* Convertimos los valores de 0 a 255 -> 0 a 1
+			b: msg.opcion0[2]/255, //* Convertimos los valores de 0 a 255 -> 0 a 1
 		},
 	}; //* Color del conector y del hipervínculo
 	sobre = msg.opcion1; //* Opción de sobreescritura
@@ -67,7 +69,6 @@ figma.on("selectionchange", async () => {
 			selArray.length == 1 ? selArray.push(frameDos) : (selArray = []); //* Guardamos la selección en el array de selección
 			break;
 		default: //* Si hay más de dos selecciones
-			//console.log("más de 2 seleccionados");
 			selArray = []; //* Vaciamos el array de selección
 			break;
 	}
@@ -285,7 +286,7 @@ figma.on("selectionchange", async () => {
 					y2,
 			},
 		];
-		line.strokeWeight = 5; //* Grosor del borde
+		line.strokeWeight = 10; //* Grosor del borde
 		line.strokeAlign = "CENTER"; //* Posicion del borde
 		line.strokeCap = "ARROW_LINES"; //* Terminación de la linea
 		line.strokes = [colorG]; //* Color del border
@@ -310,8 +311,8 @@ figma.on("selectionchange", async () => {
 		let frameName; //* Nombre del frame
 		let link; //* Hipervínculo
 
-		index == 0 ? (link = selArray[1].id) : (link = selArray[0].id); //* Obtenemos el id del frame que no es el frame actual
-		instance.children[0].children[0].children[0].hyperlink = { type: "NODE", value: link }; //* Seteamos el hipervínculo
+		index == 0 ? link = selArray[1].id : link = selArray[0].id; //* Obtenemos el id del frame que no es el frame actual
+		instance.children[0].hyperlink = { type: "NODE", value: link} //* Seteamos el hipervínculo
 		//* Seteamos la posición del hiperlink
 		if (index == 0) { //* Si el frame actual es el frame uno
 			instance.x = selArray[index].x + selArray[index].width - 400;
@@ -320,7 +321,7 @@ figma.on("selectionchange", async () => {
 			instance.x = selArray[index].x;
 			instance.y = selArray[index].y - 150;
 		}
-		//* Seteamos el nombre a escribir en el hipervinculo
+		//* Seteamos el nombre del hiperlink
 		index == 0
 			? (frameName = selArray[1].name)
 			: (frameName = selArray[0].name);

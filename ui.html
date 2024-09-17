@@ -165,8 +165,8 @@
 		-moz-appearance: none;
 		-webkit-appearance: none;
 		background: none;
-		border:0;
-    outline: none;
+		border: 0;
+		outline: none;
 		cursor: pointer;
 		height: 2em;
 		padding: 0;
@@ -217,6 +217,49 @@
 
 	.note {
 		font-size: 12px;
+	}
+
+	.ref-exmp {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		gap: 10px;
+		width: fit-content;
+		background-color: #000000;
+		border-radius: 30px;
+		font-family: "Roboto", sans-serif;
+		font-weight: 400;
+		font-size: 18px;
+		padding: 13.25px 16px;
+		filter: drop-shadow(0px 2px 7.5px rgba(0, 0, 0, 0.25))
+			drop-shadow(0px -2px 7.5px rgba(255, 255, 255, 1));
+		transition-duration: 0.5s;
+	}
+
+	.ref-cont {
+		color: #ffffff;
+		mix-blend-mode: difference;
+	}
+
+	#ref-img {
+		width: 30px;
+		height: 30px;
+	}
+
+	#ejemplo {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		gap: 20px;
+	}
+
+	#flecha {
+		transition-duration: 0.5s;
+	}
+	.subtext {
+		font-size: 12px;
+		color: #767676;
+		padding-left: 27px;
 	}
 </style>
 <body>
@@ -344,47 +387,119 @@
 			<br />
 			<div id="formOpciones">
 				<div class="cont-check">
-					<input type="color" id="opcion0" name="head" value="#E10098" />
+					<input type="color" id="opcion0" name="head" value="#000000" />
 					<label for="head">Color de las referencias</label>
 				</div>
+				<label class="subtext" for="head">Color que se dara para los hipervinculos y flechas</label>
+				<br />
 				<div class="cont-check">
 					<input type="checkbox" id="opcion1" name="local" value="1" checked />
 					<label for="opcion1"
 						>Sobreescribir el contenido del frame 1 en el 2</label
 					>
 				</div>
-				<div class="cont-check">
+				<label class="subtext" for="opcion1">Se creara una imagen PNG dentro del segundo frame seleccionado con el mismo tamaño que el primer frame seleccionado</label>
+				<br />
+				<div onclick="dispRef(2)" class="cont-check">
 					<input type="checkbox" id="opcion2" name="local" value="2" checked />
 					<label for="opcion2">Generar hipervinculos</label>
 				</div>
-				<div class="cont-check">
+				<label class="subtext" for="opcion2">Se creara un hipervinculo que conectara el frame dos con su original</label>
+				<br />
+				<div id="ejemplo2">
+					<div id="ref-exmp" class="ref-exmp">
+						<span id="ref-cont" class="ref-cont">Vista previa</span>
+						<svg
+							id="ref-img"
+							viewBox="0 0 60 60"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg"
+						>
+							<g style="mix-blend-mode: difference">
+								<mask
+									id="mask0_14_7"
+									style="mask-type: alpha"
+									maskUnits="userSpaceOnUse"
+									x="0"
+									y="0"
+									width="60"
+									height="60"
+								>
+									<rect
+										x="60"
+										y="60"
+										width="60"
+										height="60"
+										transform="rotate(180 60 60)"
+										fill="#D9D9D9"
+									/>
+								</mask>
+								<g mask="url(#mask0_14_7)">
+									<path
+										d="M30 52.5C26.9167 52.5 24.0104 51.9062 21.2812 50.7187C18.5521 49.5313 16.1667 47.9167 14.125 45.875C12.0833 43.8333 10.4688 41.4479 9.28125 38.7187C8.09375 35.9896 7.5 33.0833 7.5 30C7.5 26.9167 8.09375 24.0104 9.28125 21.2813C10.4687 18.5521 12.0833 16.1667 14.125 14.125C16.1667 12.0833 18.5521 10.4688 21.2812 9.28125C24.0104 8.09375 26.9167 7.5 30 7.5C31.7083 7.5 33.3542 7.6875 34.9375 8.0625C36.5208 8.4375 38.1042 8.97917 39.6875 9.6875L35.875 13.5C34.9167 13.1667 33.9479 12.9167 32.9687 12.75C31.9896 12.5833 31 12.5 30 12.5C25.1667 12.5 21.0417 14.2083 17.625 17.625C14.2083 21.0417 12.5 25.1667 12.5 30C12.5 34.8333 14.2083 38.9583 17.625 42.375C21.0417 45.7917 25.1667 47.5 30 47.5C34.8333 47.5 38.9583 45.7917 42.375 42.375C45.7917 38.9583 47.5 34.8333 47.5 30C47.5 29 47.4167 28.0104 47.25 27.0312C47.0833 26.0521 46.8333 25.0833 46.5 24.125L50.25 20.375C51 21.875 51.5625 23.4271 51.9375 25.0312C52.3125 26.6354 52.5 28.2917 52.5 30C52.5 33.0833 51.9062 35.9896 50.7187 38.7187C49.5312 41.4479 47.9167 43.8333 45.875 45.875C43.8333 47.9167 41.4479 49.5312 38.7187 50.7187C35.9896 51.9062 33.0833 52.5 30 52.5ZM27.5 20V29L49 7.5L52.5 11L31 32.5H40V37.5H22.5V20L27.5 20Z"
+										fill="white"
+									/>
+								</g>
+							</g>
+						</svg>
+					</div>
+				</div>
+				<br id="ref-space2" />
+				<div onclick="dispRef(3)" class="cont-check">
 					<input type="checkbox" id="opcion3" name="local" value="3" checked />
 					<label for="opcion3">Crear conector de frame a frame</label>
 				</div>
+				<label class="subtext" for="opcion3">Creara un conector entre ambos frames seleccionados</label>
+				<br />
+				<div id="ejemplo3">
+					<svg
+						width="64"
+						height="20"
+						viewBox="0 0 121 38"
+						fill="none"
+						xmlns="http://www.w3.org/2000/svg"
+					>
+						<path
+							id="flecha"
+							d="M1.23223 17.2322C0.255922 18.2085 0.255922 19.7915 1.23223 20.7678L17.1421 36.6777C18.1184 37.654 19.7014 37.654 20.6777 36.6777C21.654 35.7014 21.654 34.1184 20.6777 33.1421L6.53553 19L20.6777 4.85786C21.654 3.88155 21.654 2.29864 20.6777 1.32233C19.7014 0.34602 18.1184 0.34602 17.1421 1.32233L1.23223 17.2322ZM120.268 20.7678C121.244 19.7915 121.244 18.2085 120.268 17.2322L104.358 1.32233C103.382 0.34602 101.799 0.34602 100.822 1.32233C99.846 2.29864 99.846 3.88155 100.822 4.85786L114.964 19L100.822 33.1421C99.846 34.1184 99.846 35.7014 100.822 36.6777C101.799 37.654 103.382 37.654 104.358 36.6777L120.268 20.7678ZM3 21.5H23V16.5H3V21.5ZM23 21.5H56.5V16.5H23V21.5ZM56.5 21.5H93V16.5H56.5V21.5ZM93 21.5H118.5V16.5H93V21.5Z"
+							fill="#000000"
+						/>
+					</svg>
+				</div>
+				<br id="ref-space3" />
 			</div>
 			<br />
-			<li>Selecciona dos frames para referenciarlos</li>
+			<li>
+				Selecciona un frame, <b>manten la tecla SHIFT presionada</b> y
+				selecciona un frame más para conectarlos
+			</li>
 		</ol>
 	</div>
 	<script>
-    //* Acciónes al cambiar el valor de los inputs
+		//* Acciónes al cambiar el valor de los inputs
 		document.getElementById("formOpciones").onchange = () => {
 			let color = document.getElementById("opcion0").value; //*Obtenemos el valor del color elegido
 			let rgbColor = []; //* Creamos un array para guardar los valores RGB del color
-			rgbColor[0] = parseInt(color.substr(1, 2), 16); //* Convertimos el valor hexadecimal a decimal del rojo
-			rgbColor[1] = parseInt(color.substr(3, 2), 16); //* Convertimos el valor hexadecimal a decimal del verde
-			rgbColor[2] = parseInt(color.substr(5, 2), 16); //* Convertimos el valor hexadecimal a decimal del azul
+			rgbColor[0] = parseInt(color.slice(1, 3), 16); //* Convertimos el valor hexadecimal a decimal del rojo
+			rgbColor[1] = parseInt(color.slice(3, 5), 16); //* Convertimos el valor hexadecimal a decimal del verde
+			rgbColor[2] = parseInt(color.slice(5, 7), 16); //* Convertimos el valor hexadecimal a decimal del azul
 
 			let opcion1 = document.getElementById("opcion1").checked; //* Obtenemos el valor del checkbox 1
 			let opcion2 = document.getElementById("opcion2").checked; //* Obtenemos el valor del checkbox 2
 			let opcion3 = document.getElementById("opcion3").checked; //* Obtenemos el valor del checkbox 3
 
-      //* Evaluamos si almenos un checkbox esta seleccionado
+			document.getElementById("ref-exmp").style.backgroundColor =
+				"rgb(" + rgbColor[0] + "," + rgbColor[1] + "," + rgbColor[2] + ")"; //* Cambiamos el color del div de ejemplo
+
+			document.getElementById("flecha").style.fill =
+				"rgb(" + rgbColor[0] + "," + rgbColor[1] + "," + rgbColor[2] + ")"; //* Cambiamos el color del div de ejemplo
+
+			//* Evaluamos si almenos un checkbox esta seleccionado
 			if (opcion1 == false && opcion2 == false && opcion3 == false) {
 				alert("Selecciona al menos una opción"); //* Mostramos un mensaje de alerta al no seleccionar ninguna opción
 				document.getElementById("opcion1").checked = true; //* Seleccionamos el checkbox 1
 			} else {
-        //* Enviamos los valores al index.js
+				//* Enviamos los valores al index.js
 				parent.postMessage(
 					{
 						pluginMessage: {
@@ -399,5 +514,19 @@
 				);
 			}
 		};
+
+		function dispRef(num) {
+			let ref = document.getElementById("ejemplo"+num);
+			let refSpace = document.getElementById("ref-space"+num);
+			let opcion = document.getElementById("opcion"+num);
+
+			if (opcion.checked) {
+				ref.style.display = "flex";
+				refSpace.style.display = "block";
+			} else {
+				ref.style.display = "none";
+				refSpace.style.display = "none";
+			}
+		}
 	</script>
 </body>
